@@ -8,14 +8,12 @@ from datetime import datetime
 # -----------------------------------------------------------------------------
 st.set_page_config(page_title="Terminal Financeiro Pro", layout="wide")
 
-# Bloqueia a tradução automática para evitar travamentos no Safari do iPhone
 st.markdown('<meta name="google" content="notranslate">', unsafe_allow_html=True)
 
 st.title("Terminal de Patrimônio")
 st.caption("Acompanhamento de ativos de mercado e controle orçamentário individual")
 st.write("---")
 
-# Menu de navegação adaptado para telas de celulares
 menu_navegacao = st.sidebar.radio(
     "Navegação do Painel:",
     ["Painel Geral", "Analisador de Ativos", "Controle de Gastos"]
@@ -154,7 +152,7 @@ elif menu_navegacao == "Analisador de Ativos":
                 * **Múltiplo P/VP:** {f"{p_vp:.2f}" if p_vp else "N/A"}
                 * **Dividend Yield:** {f"{dy:.2f}%" if dy else "N/A"}
                 
-                *Mecanismo ativo. Dados atualizados de mercado.*
+                *Mecanismo ativo. Dados de mercado consolidados.*
                 """
                 st.markdown(relatorio)
             except:
@@ -184,7 +182,6 @@ elif menu_navegacao == "Controle de Gastos":
         st.markdown("#### Demonstrativo Mensal")
         df_orcamento = st.session_state["gastos_celular"]
         if df_orcamento.empty:
-            st.caption("Nenhum lançamento registrado neste aparelho.")
+            st.caption("Nenhum lançamento registrado neste mês.")
         else:
-        pass
-
+            st.dataframe(df_orcamento.style.format({"Valor (R$)": "R$ {:.2f}"}), use_container_width=True)
