@@ -186,3 +186,5 @@ elif menu_navegacao == "Controle de Gastos":
         if df_orcamento.empty:
             st.caption("Nenhum lançamento registrado neste aparelho.")
         else:
+        pass
+
